@@ -1,0 +1,80 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://assets/fonts/fonte3.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://scripts/gameover.gd" type="Script" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+size = 51
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 51
+font_data = ExtResource( 1 )
+
+[sub_resource type="Animation" id=4]
+resource_name = "animationPressKey"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("restart:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("showText:playback_speed")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.5 ]
+}
+
+[node name="background" type="ColorRect"]
+margin_left = -9.0
+margin_top = -19.0
+margin_right = 1035.0
+margin_bottom = 615.0
+color = Color( 0, 0, 0, 1 )
+script = ExtResource( 2 )
+
+[node name="gameOverText" type="Label" parent="."]
+margin_left = 158.0
+margin_top = 158.0
+margin_right = 887.0
+margin_bottom = 272.0
+custom_colors/font_color = Color( 0.458824, 0.160784, 0.160784, 1 )
+custom_colors/font_outline_modulate = Color( 0.490196, 0.188235, 0.188235, 1 )
+custom_colors/font_color_shadow = Color( 0.482353, 0.160784, 0.160784, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "             GAME OVER!
+Death is only a new beginning."
+
+[node name="restart" type="Label" parent="."]
+modulate = Color( 1, 1, 1, 0.3 )
+margin_left = 354.0
+margin_top = 380.0
+margin_right = 683.0
+margin_bottom = 494.0
+custom_colors/font_color = Color( 0.752941, 0.282353, 0.282353, 1 )
+custom_colors/font_outline_modulate = Color( 0.490196, 0.188235, 0.188235, 1 )
+custom_colors/font_color_shadow = Color( 0.482353, 0.160784, 0.160784, 1 )
+custom_fonts/font = SubResource( 2 )
+text = "Press any Key
+ to try again!"
+
+[node name="showText" type="AnimationPlayer" parent="."]
+autoplay = "animationPressKey"
+playback_speed = 0.5
+anims/animationPressKey = SubResource( 4 )
+
+[connection signal="animation_finished" from="showText" to="." method="_on_showText_animation_finished"]

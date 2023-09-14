@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/fall_in_the_river.mp3-86a23306cdb3270b54f1193ff3db3d04.mp3str"
+
+[deps]
+
+source_file="res://assets/sounds_fonts/fall_in_the_river.mp3"
+dest_files=[ "res://.import/fall_in_the_river.mp3-86a23306cdb3270b54f1193ff3db3d04.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/jump_voice.mp3-90750be031b07a2cb79604e62c4fe34d.mp3str"
+
+[deps]
+
+source_file="res://assets/sounds_fonts/jump_voice.mp3"
+dest_files=[ "res://.import/jump_voice.mp3-90750be031b07a2cb79604e62c4fe34d.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

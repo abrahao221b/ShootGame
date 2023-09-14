@@ -1,0 +1,616 @@
+[gd_scene load_steps=29 format=2]
+
+[ext_resource path="res://scene/player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scene/gate.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scene/boss.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scene/enemy.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/fonts/fonte3.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://scripts/hud.gd" type="Script" id=6]
+[ext_resource path="res://assets/scenario_and_items/cristal.png" type="Texture" id=8]
+[ext_resource path="res://assets/scenario_and_items/fundo_2.png" type="Texture" id=9]
+[ext_resource path="res://assets/scenario_and_items/plataforma_direita.png" type="Texture" id=10]
+[ext_resource path="res://assets/scenario_and_items/plataforma_esquerda.png" type="Texture" id=11]
+[ext_resource path="res://assets/scenario_and_items/plataforma_esquerda_rachadura.png" type="Texture" id=12]
+[ext_resource path="res://assets/scenario_and_items/plataforma_central.png" type="Texture" id=13]
+[ext_resource path="res://assets/scenario_and_items/plataforma_de_ferro.png" type="Texture" id=14]
+[ext_resource path="res://assets/scenario_and_items/plataforma_central_rachadura.png" type="Texture" id=15]
+[ext_resource path="res://assets/scenario_and_items/lua.png" type="Texture" id=16]
+[ext_resource path="res://assets/scenario_and_items/fundo_1.png" type="Texture" id=17]
+[ext_resource path="res://assets/scenario_and_items/fundo_3.png" type="Texture" id=18]
+[ext_resource path="res://resource/font.tres" type="DynamicFont" id=19]
+
+[sub_resource type="GDScript" id=12]
+script/source = "extends Node2D
+
+# variables
+var level_clear = false
+var door_close = false
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass 
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta):
+#	pass
+"
+
+[sub_resource type="ConvexPolygonShape2D" id=7]
+points = PoolVector2Array( 905.84, 130, 933.2, 173.2, 931.76, 266.8, 80.72, 266.8, 80.72, 168.88, 98.0001, 132.88, 100.88, 132.88 )
+
+[sub_resource type="TileSet" id=8]
+0/name = "plataforma_de_ferro.png 0"
+0/texture = ExtResource( 14 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 0, 256, 1024, 768 )
+0/tile_mode = 0
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape = SubResource( 7 )
+0/shape_one_way = false
+0/shape_one_way_margin = 1.0
+0/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 7 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+0/z_index = 0
+
+[sub_resource type="ConvexPolygonShape2D" id=1]
+points = PoolVector2Array( 0, 256, 512, 256, 512, 512, 0, 512 )
+
+[sub_resource type="ConvexPolygonShape2D" id=2]
+points = PoolVector2Array( 512, 512, 0, 512, 0, 256, 512, 256 )
+
+[sub_resource type="ConvexPolygonShape2D" id=3]
+points = PoolVector2Array( 0, 256, 0, 256, 321, 256, 259, 512, 0, 512 )
+
+[sub_resource type="ConvexPolygonShape2D" id=5]
+points = PoolVector2Array( 512, 512, 256, 512, 192, 256, 512, 256, 512, 256 )
+
+[sub_resource type="ConvexPolygonShape2D" id=6]
+points = PoolVector2Array( 512, 512, 256, 512, 192, 256, 512, 256, 512, 256 )
+
+[sub_resource type="TileSet" id=4]
+0/name = "plataforma_central.png 0"
+0/texture = ExtResource( 13 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 0, 0, 512, 512 )
+0/tile_mode = 0
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape = SubResource( 1 )
+0/shape_one_way = false
+0/shape_one_way_margin = 1.0
+0/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 1 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+0/z_index = 0
+1/name = "plataforma_central_rachadura.png 1"
+1/texture = ExtResource( 15 )
+1/tex_offset = Vector2( 0, 0 )
+1/modulate = Color( 1, 1, 1, 1 )
+1/region = Rect2( 0, 0, 512, 512 )
+1/tile_mode = 0
+1/occluder_offset = Vector2( 0, 0 )
+1/navigation_offset = Vector2( 0, 0 )
+1/shape_offset = Vector2( 0, 0 )
+1/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+1/shape = SubResource( 2 )
+1/shape_one_way = false
+1/shape_one_way_margin = 1.0
+1/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 2 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+1/z_index = 0
+2/name = "plataforma_direita.png 2"
+2/texture = ExtResource( 10 )
+2/tex_offset = Vector2( 0, 0 )
+2/modulate = Color( 1, 1, 1, 1 )
+2/region = Rect2( 0, 0, 512, 512 )
+2/tile_mode = 0
+2/occluder_offset = Vector2( 0, 0 )
+2/navigation_offset = Vector2( 0, 0 )
+2/shape_offset = Vector2( 0, 0 )
+2/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+2/shape = SubResource( 3 )
+2/shape_one_way = false
+2/shape_one_way_margin = 1.0
+2/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 3 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+2/z_index = 0
+3/name = "plataforma_esquerda.png 3"
+3/texture = ExtResource( 11 )
+3/tex_offset = Vector2( 0, 0 )
+3/modulate = Color( 1, 1, 1, 1 )
+3/region = Rect2( 0, 0, 512, 512 )
+3/tile_mode = 0
+3/occluder_offset = Vector2( 0, 0 )
+3/navigation_offset = Vector2( 0, 0 )
+3/shape_offset = Vector2( 0, 0 )
+3/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+3/shape = SubResource( 5 )
+3/shape_one_way = false
+3/shape_one_way_margin = 1.0
+3/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 5 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+3/z_index = 0
+4/name = "plataforma_esquerda_rachadura.png 4"
+4/texture = ExtResource( 12 )
+4/tex_offset = Vector2( 0, 0 )
+4/modulate = Color( 1, 1, 1, 1 )
+4/region = Rect2( 0, 0, 512, 512 )
+4/tile_mode = 0
+4/occluder_offset = Vector2( 0, 0 )
+4/navigation_offset = Vector2( 0, 0 )
+4/shape_offset = Vector2( 0, 0 )
+4/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+4/shape = SubResource( 6 )
+4/shape_one_way = false
+4/shape_one_way_margin = 1.0
+4/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 6 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+4/z_index = 0
+
+[sub_resource type="DynamicFont" id=11]
+font_data = ExtResource( 5 )
+
+[node name="level2" type="Node2D"]
+script = SubResource( 12 )
+
+[node name="parallaxBackground" type="ParallaxBackground" parent="."]
+offset = Vector2( 0, 100 )
+transform = Transform2D( 1, 0, 0, 1, 0, 100 )
+
+[node name="layer4" type="ParallaxLayer" parent="parallaxBackground"]
+motion_scale = Vector2( 0.15, 1 )
+
+[node name="texture" type="Sprite" parent="parallaxBackground/layer4"]
+position = Vector2( 0, -210 )
+texture = ExtResource( 16 )
+centered = false
+
+[node name="layer3" type="ParallaxLayer" parent="parallaxBackground"]
+motion_scale = Vector2( 0.5, 1 )
+motion_mirroring = Vector2( 1536, 0 )
+
+[node name="texture" type="Sprite" parent="parallaxBackground/layer3"]
+position = Vector2( 0, -210 )
+texture = ExtResource( 18 )
+centered = false
+
+[node name="layer2" type="ParallaxLayer" parent="parallaxBackground"]
+motion_scale = Vector2( 1.05, 1 )
+motion_mirroring = Vector2( 1536, 0 )
+
+[node name="texture" type="Sprite" parent="parallaxBackground/layer2"]
+position = Vector2( 0, -210 )
+texture = ExtResource( 9 )
+centered = false
+
+[node name="layer1" type="ParallaxLayer" parent="parallaxBackground"]
+motion_mirroring = Vector2( 1536, 0 )
+
+[node name="texture" type="Sprite" parent="parallaxBackground/layer1"]
+position = Vector2( 0, -210 )
+texture = ExtResource( 17 )
+centered = false
+
+[node name="iron_platform" type="TileMap" parent="."]
+scale = Vector2( 0.7, 0.7 )
+tile_set = SubResource( 8 )
+cell_size = Vector2( 512, 128 )
+collision_layer = 32
+collision_mask = 0
+format = 1
+tile_data = PoolIntArray( -65501, 0, 0, 30, 0, 0, 65537, 0, 0, 65561, 0, 0, 65575, 0, 0, 65599, 0, 0, 131081, 0, 0, 131085, 0, 0, 131092, 0, 0, 262187, 0, 0 )
+
+[node name="platform" type="TileMap" parent="."]
+scale = Vector2( 0.7, 0.7 )
+tile_set = SubResource( 4 )
+cell_size = Vector2( 512, 128 )
+collision_layer = 32
+collision_mask = 0
+format = 1
+tile_data = PoolIntArray( 65569, 3, 0, 65570, 1, 0, 65571, 1, 0, 65572, 1, 0, 65573, 2, 0, 131101, 3, 0, 131102, 1, 0, 131103, 1, 0, 131104, 1, 0, 131105, 2, 0, 131121, 3, 0, 131122, 1, 0, 131123, 1, 0, 131124, 1, 0, 131125, 1, 0, 131126, 1, 0, 131127, 1, 0, 131128, 1, 0, 131129, 1, 0, 131130, 1, 0, 131131, 1, 0, 131132, 1, 0, 131133, 1, 0, 131134, 1, 0, 131135, 2, 0, 196646, 3, 0, 196647, 1, 0, 196648, 1, 0, 196649, 2, 0, 196655, 3, 0, 196656, 1, 0, 196657, 2, 0, 327678, 3, 0, 327679, 0, 0, 262144, 0, 0, 262145, 0, 0, 262146, 0, 0, 262147, 0, 0, 262148, 2, 0, 262149, 3, 0, 262150, 1, 0, 262151, 2, 0, 262152, 3, 0, 262153, 1, 0, 262154, 1, 0, 262155, 2, 0, 262156, 3, 0, 262157, 1, 0, 262158, 1, 0, 262159, 2, 0, 262161, 3, 0, 262162, 1, 0, 262163, 1, 0, 262164, 1, 0, 262165, 1, 0, 262166, 1, 0, 262167, 1, 0, 262168, 1, 0, 262169, 1, 0, 262170, 1, 0, 262171, 1, 0, 262172, 2, 0, 327725, 3, 0, 327726, 1, 0, 327727, 2, 0, 393258, 3, 0, 393259, 1, 0, 393260, 1, 0, 393261, 2, 0, 458767, 3, 0, 458768, 1, 0, 458769, 2, 0, 458781, 3, 0, 458782, 1, 0, 458783, 1, 0, 458784, 2, 0, 524327, 3, 0, 524328, 1, 0, 524329, 1, 0, 524330, 2, 0, 589856, 3, 0, 589857, 2, 0, 589862, 3, 0, 589863, 1, 0, 589864, 2, 0, 655393, 3, 0, 655394, 1, 0, 655395, 1, 0, 655396, 1, 0, 655397, 2, 0, 720923, 3, 0, 720924, 0, 0, 720925, 1, 0, 720926, 1, 0, 720927, 2, 0 )
+
+[node name="player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 112, 421 )
+
+[node name="limit_left" type="Position2D" parent="."]
+position = Vector2( -1024, 424 )
+
+[node name="limit_right" type="Position2D" parent="."]
+position = Vector2( 23172, 125 )
+
+[node name="enemies" type="Node2D" parent="."]
+
+[node name="enemy" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 448, 393 )
+
+[node name="enemy2" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 607, 63 )
+
+[node name="enemy3" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 794, 61 )
+
+[node name="enemy4" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 904, 401 )
+
+[node name="enemy5" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 653, 398 )
+
+[node name="enemy6" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 3696, 174 )
+
+[node name="enemy7" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 3340, 181 )
+
+[node name="enemy67" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 3535, 177 )
+
+[node name="enemy8" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 2094, 414 )
+
+[node name="enemy66" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 1293, 410 )
+
+[node name="enemy9" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 2351, 406 )
+
+[node name="enemy10" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 2581, 409 )
+
+[node name="enemy61" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 3200, 418 )
+
+[node name="enemy64" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 3378, 414 )
+
+[node name="enemy65" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 3730, 414 )
+
+[node name="enemy62" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 3861, 405 )
+
+[node name="enemy63" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 3560, 422 )
+
+[node name="enemy11" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 4887, 134 )
+
+[node name="enemy68" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 5103, 426 )
+
+[node name="enemy69" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 4760, 431 )
+
+[node name="enemy12" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 5126, 158 )
+
+[node name="enemy13" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 5288, 435 )
+
+[node name="enemy71" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 5822, 668 )
+
+[node name="enemy72" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 5966, 660 )
+
+[node name="enemy73" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 6114, 673 )
+
+[node name="enemy74" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 6207, 686 )
+
+[node name="enemy70" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 5686, 685 )
+
+[node name="enemy14" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 6508, 426 )
+
+[node name="enemy15" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 6674, 437 )
+
+[node name="enemy16" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 7005, 435 )
+
+[node name="enemy17" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 7416, 175 )
+
+[node name="enemy18" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 7731, 154 )
+
+[node name="enemy19" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 7594, 162 )
+
+[node name="enemy20" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 8428, 423 )
+
+[node name="enemy21" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 8596, 418 )
+
+[node name="enemy22" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 8812, 426 )
+
+[node name="enemy23" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 9010, 423 )
+
+[node name="enemy24" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 9253, 429 )
+
+[node name="enemy25" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 9493, 431 )
+
+[node name="enemy26" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 9744, 423 )
+
+[node name="enemy27" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 8042, 401 )
+
+[node name="enemy28" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 7676, 431 )
+
+[node name="enemy75" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 9113, 75 )
+
+[node name="enemy76" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 9935, 435 )
+
+[node name="enemy29" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 9317, 76 )
+
+[node name="enemy30" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 10912, 686 )
+
+[node name="enemy77" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 10014, 1034 )
+
+[node name="enemy78" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 10222, 1034 )
+
+[node name="enemy79" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 10430, 1047 )
+
+[node name="enemy80" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 10633, 1043 )
+
+[node name="enemy81" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 10811, 1051 )
+
+[node name="enemy82" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 11019, 1043 )
+
+[node name="enemy83" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 11197, 1047 )
+
+[node name="enemy31" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 12342, 941 )
+
+[node name="enemy32" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 11362, 677 )
+
+[node name="enemy94" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 11137, 698 )
+
+[node name="enemy33" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 10919, 10 )
+
+[node name="enemy34" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 11074, -6 )
+
+[node name="enemy35" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 11242, -9 )
+
+[node name="enemy36" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 11013, 258 )
+
+[node name="enemy37" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 11197, 250 )
+
+[node name="enemy38" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 12192, 162 )
+
+[node name="enemy84" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 11683, 238 )
+
+[node name="enemy85" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 12471, 145 )
+
+[node name="enemy86" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 12730, 153 )
+
+[node name="enemy95" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 12883, -93 )
+
+[node name="enemy87" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 13014, 157 )
+
+[node name="enemy39" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 12767, -102 )
+
+[node name="enemy40" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 13013, -96 )
+
+[node name="enemy41" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 12558, 947 )
+
+[node name="enemy42" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 12793, 939 )
+
+[node name="enemy43" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 13089, 941 )
+
+[node name="enemy44" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 14111, 349 )
+
+[node name="enemy45" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 14351, 346 )
+
+[node name="enemy46" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 14642, 349 )
+
+[node name="enemy47" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 14220, 76 )
+
+[node name="enemy48" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 14447, 74 )
+
+[node name="enemy49" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 14399, 780 )
+
+[node name="enemy50" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 14616, 778 )
+
+[node name="enemy51" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 14832, 761 )
+
+[node name="enemy52" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 13891, 850 )
+
+[node name="enemy53" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 14327, 70 )
+
+[node name="enemy88" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 15420, 612 )
+
+[node name="enemy89" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 15594, 616 )
+
+[node name="enemy90" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 15751, 608 )
+
+[node name="enemy91" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 15857, 616 )
+
+[node name="enemy92" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 17387, 332 )
+
+[node name="enemy93" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 17052, 332 )
+
+[node name="enemy54" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 15647, 278 )
+
+[node name="enemy55" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 15853, 282 )
+
+[node name="enemy56" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 16566, 518 )
+
+[node name="enemy57" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 17241, 332 )
+
+[node name="enemy58" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 22851, 72 )
+
+[node name="enemy59" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 23020, 69 )
+
+[node name="enemy60" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 16754, 514 )
+
+[node name="HUD" type="CanvasLayer" parent="."]
+script = ExtResource( 6 )
+
+[node name="life" type="Label" parent="HUD"]
+margin_left = 37.0
+margin_top = 19.0
+margin_right = 77.0
+margin_bottom = 33.0
+rect_scale = Vector2( 2, 2 )
+custom_fonts/font = ExtResource( 19 )
+text = "Life"
+valign = 1
+
+[node name="score" type="Label" parent="HUD"]
+margin_left = 62.0
+margin_top = 88.0
+margin_right = 104.0
+margin_bottom = 119.0
+rect_scale = Vector2( 2, 2 )
+custom_fonts/font = SubResource( 11 )
+text = "0"
+valign = 1
+
+[node name="cristal" type="TextureRect" parent="HUD"]
+margin_left = 34.0
+margin_top = 102.0
+margin_right = 162.0
+margin_bottom = 230.0
+rect_scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 8 )
+
+[node name="cristal2" type="TextureRect" parent="HUD"]
+margin_left = 39.0
+margin_top = 109.0
+margin_right = 167.0
+margin_bottom = 237.0
+rect_scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 8 )
+
+[node name="hearts_background" type="HBoxContainer" parent="HUD"]
+margin_left = 36.0
+margin_top = 64.0
+margin_right = 164.0
+margin_bottom = 192.0
+rect_scale = Vector2( 0.2, 0.2 )
+
+[node name="hearts_front" type="HBoxContainer" parent="HUD"]
+margin_left = 36.0
+margin_top = 64.0
+margin_right = 164.0
+margin_bottom = 192.0
+rect_scale = Vector2( 0.2, 0.2 )
+
+[node name="boss" parent="." instance=ExtResource( 3 )]
+position = Vector2( 20909, 175 )
+scale = Vector2( -1, 1 )
+
+[node name="boss2" parent="." instance=ExtResource( 3 )]
+position = Vector2( 20226, -187 )
+scale = Vector2( -1, 1 )
+
+[node name="left" type="Position2D" parent="."]
+position = Vector2( 18441, 246 )
+
+[node name="right" type="Position2D" parent="."]
+position = Vector2( 21240, 259 )
+
+[node name="gate" parent="." instance=ExtResource( 2 )]
+position = Vector2( 18279, 215 )
+
+[node name="gate2" parent="." instance=ExtResource( 2 )]
+position = Vector2( 21409, 215 )
